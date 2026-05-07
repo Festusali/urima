@@ -1,0 +1,264 @@
+:root {
+    --rose-red: #E31E24;
+    --light-rose-red: #f0d4d5;
+    --gold: #FFD700;
+    --violet: #4B0082;
+    --light-violet: #F5F0FF;
+    --dark-text: #2D2D2D;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--dark-text);
+    background-color: #fff;
+    font-size: 16px;
+}
+
+/* Top Bar */
+.top-banner {
+    background: var(--violet);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.img-cont {
+    max-width: 100%;
+}
+
+.img-cont img {
+    max-width: 100%;
+}
+
+/* Header/Hero */
+header {
+    padding: 40px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #fff 60%, var(--light-violet) 100%);
+}
+
+.rating {
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: var(--rose-red);
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+h1,
+h2,
+.text-center {
+    text-align: center;
+}
+
+.text-violet {
+    color: var(--violet);
+}
+
+.text-rose-red {
+    color: var(--rose-red);
+}
+
+.hero-sub {
+    font-size: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    font-weight: 500;
+}
+
+.small-detail {
+    color: var(--dark-text);
+    font-size: 1.3rem;
+}
+
+.detail-emphasis {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--violet);
+    font-size: larger;
+}
+
+.bg-violet {
+    background: var(--violet) !important;
+}
+
+.bg-light-violet {
+    background: var(--light-violet);
+}
+
+.bg-light-rose-red {
+    background: var(--light-rose-red);
+}
+
+.border-gold {
+    border-color: var(--gold);
+}
+
+.section-padding {
+    padding: 50px 20px;
+}
+
+/* CTA Buttons */
+.cta-btn {
+    background: var(--rose-red);
+    color: white;
+    padding: 18px 35px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(227, 30, 36, 0.4);
+    transition: transform 0.3s ease;
+    border: 2px solid var(--gold);
+}
+
+.cta-btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-sm {
+    font-size: 1rem;
+    padding: 12px 20px;
+}
+
+.card-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    font-size: larger;
+    background: white;
+    padding: 20px;
+    border-left: 5px solid var(--rose-red);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Benefits */
+.benefits {
+    border-top: 1px solid var(--violet);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.benefit-item i {
+    color: #28a745;
+    margin-right: 15px;
+    font-size: 1.4rem;
+}
+
+/* Pricing Table */
+.pricing {
+    padding: 60px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.price-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.price-card {
+    border: 2px solid #eee;
+    border-radius: 15px;
+    padding: 30px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.price-card.popular {
+    border-color: var(--gold);
+    background: var(--light-violet);
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.badge {
+    background: var(--gold);
+    color: var(--violet);
+    padding: 5px 15px;
+    font-weight: bold;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+}
+
+.price-old {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.price-new {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--rose-red);
+    display: block;
+    margin: 10px 0;
+}
+
+/* Guarantee Box */
+.guarantee {
+    border: 2px dashed var(--violet);
+    padding: 30px;
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: center;
+    background: #fff;
+}
+
+.faq h4 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.faq p {
+    margin-top: 0;
+    padding-bottom: 0;
+}
+
+footer {
+    background: #222;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: lighter;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .price-card.popular {
+        transform: none;
+        margin: 20px 0;
+    }
+}
