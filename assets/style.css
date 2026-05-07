@@ -252,6 +252,80 @@ footer {
     font-weight: lighter;
 }
 
+/* Order Section Custom Styles */
+.order-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.order-promo-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid var(--gold);
+}
+
+.price-display {
+    margin: 20px 0;
+    padding: 15px;
+    background: var(--light-violet);
+    border-radius: 10px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    flex: 1;
+    min-width: 250px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--violet);
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* Ensures padding doesn't break width */
+}
+
+.form-input:focus,
+.form-select:focus {
+    border-color: var(--rose-red);
+    outline: none;
+}
+
+.btn-block {
+    width: 100%;
+    cursor: pointer;
+}
+
+.order-form-wrapper {
+    background-color: var(--light-violet);
+    margin-top: 1rem;
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+}
+
+/* Icons */
+.fa-truck-fast {
+    margin-bottom: 10px;
+}
+
 @media (max-width: 600px) {
     h1 {
         font-size: 2rem;
@@ -260,5 +334,13 @@ footer {
     .price-card.popular {
         transform: none;
         margin: 20px 0;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        min-width: 100%;
     }
 }

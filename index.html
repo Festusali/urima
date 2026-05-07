@@ -236,6 +236,134 @@
             directly from our site to guarantee you receive the authentic product.</p>
     </section>
 
+    <!-- Order section -->
+    <section id="order" class="order-container section-padding">
+        <div class="order-promo-card shadow">
+            <h2 class="text-rose-red text-center">Promo Sales!!!</h2>
+            <p class="text-center">Order today and enjoy huge discounts + <strong>FREE DELIVERY</strong>.</p>
+
+            <div class="price-display text-center">
+                <span class="small-detail">Normal Price: <span class="price-old">₦30,000</span></span><br>
+                <span class="detail-emphasis">Promo Price: <span class="text-rose-red">₦26,000</span></span>
+            </div>
+
+            <div class="text-center mt-3">
+                <h2 class="text-violet">+</h2>
+                <img class="img-fluid" src="/assets/images/free-delivery.png">
+            </div>
+
+            <div class="action-text p-3 text-center">
+                <p>Hurry! Limited stocks available.</p>
+                <a href="#order-form-container" class="cta-btn mt-3">Place Your Order Now</a>
+                <p></p>
+            </div>
+        </div>
+
+        <div class="order-form-wrapper bg-light-violet mt-4" id="order-form-container">
+            <div class="shadow card p-3">
+                <h2 class="text-rose-red text-center">Place Your Order Now!</h2>
+                <div class="img-cont">
+                    <img src="/assets/images/payment.png">
+                </div>
+                <p class="text-center">Pay only when the product is delivered to your doorstep.</p>
+
+                <form id="order-form" name="orderForm" method="POST" action="#">
+                    <input type="hidden" name="subject" value="New Order For Urima Guard" />
+                    <input type="hidden" name="productName" value="Urima Guard" />
+
+                    <div class="form-group">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" class="form-input" placeholder="Firstname Lastname" name="fullname" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Phone *</label>
+                            <input type="tel" class="form-input" placeholder="08012345678" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Alternative Phone</label>
+                            <input type="tel" class="form-input" placeholder="Optional" name="alt_phone">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Quantity *</label>
+                            <select name="quantity" id="quantity" required class="form-select">
+                                <option value="" selected>Choose Quantity *</option>
+                                <option value="1">1 Bottle - ₦26,000</option>
+                                <option value="2">2 Bottles - ₦42,000</option>
+                                <option value="3">3 Bottles - ₦54,000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Delivery State *</label>
+                            <select name="state" required class="form-select">
+                                <option value="" selected>Select State *</option>
+                                <option value="Lagos">Lagos</option>
+                                <option value="Abuja">Abuja</option>
+                                <option value="Rivers">Rivers</option>
+                                <option value="Abia">Abia</option>
+                                <option value="Adamawa">Adamawa</option>
+                                <option value="Akwa Ibom">Akwa Ibom</option>
+                                <option value="Anambra">Anambra</option>
+                                <option value="Bauchi">Bauchi</option>
+                                <option value="Bayelsa">Bayelsa</option>
+                                <option value="Benue">Benue</option>
+                                <option value="Borno">Borno</option>
+                                <option value="Cross River">Cross River</option>
+                                <option value="Delta">Delta</option>
+                                <option value="Ebonyi">Ebonyi</option>
+                                <option value="Edo">Edo</option>
+                                <option value="Ekiti">Ekiti</option>
+                                <option value="Enugu">Enugu</option>
+                                <option value="Gombe">Gombe</option>
+                                <option value="Imo">Imo</option>
+                                <option value="Jigawa">Jigawa</option>
+                                <option value="Kaduna">Kaduna</option>
+                                <option value="Kano">Kano</option>
+                                <option value="Katsina">Katsina</option>
+                                <option value="Kebbi">Kebbi</option>
+                                <option value="Kogi">Kogi</option>
+                                <option value="Kwara">Kwara</option>
+                                <option value="Nasarawa">Nasarawa</option>
+                                <option value="Niger">Niger</option>
+                                <option value="Ogun">Ogun</option>
+                                <option value="Ondo">Ondo</option>
+                                <option value="Osun">Osun</option>
+                                <option value="Oyo">Oyo</option>
+                                <option value="Plateau">Plateau</option>
+                                <option value="Sokoto">Sokoto</option>
+                                <option value="Taraba">Taraba</option>
+                                <option value="Yobe">Yobe</option>
+                                <option value="Zamfara">Zamfara</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Delivery Address *</label>
+                        <input type="text" class="form-input" placeholder="House No, Street Name & City" name="address"
+                            required>
+                    </div>
+
+                    <button type="submit" class="cta-btn btn-block mt-3">CONFIRM ORDER NOW!</button>
+                </form>
+
+                <div class="whatsapp-box mt-3 text-center">
+                    <p>Prefer WhatsApp?</p>
+                    <a href="https://wa.me/+2347067868317/?text=Hello%2C+I+want+to+buy+Urima+Guard"
+                        class="cta-btn bg-violet border-gold" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Order Via WhatsApp
+                    </a>
+                    <h3 class="text-violet mt-3">Enquiries: <a href="tel:+2347067868317"
+                            style="color: inherit; text-decoration: none;">07067868317</a></h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQs -->
     <section class="faq section-padding" style="max-width: 800px; margin: 0 auto;">
         <h2 class="text-violet">Frequently Asked Questions</h2>
