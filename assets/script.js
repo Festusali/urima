@@ -48,3 +48,39 @@ window.addEventListener("resize", () => {
   track.style.transform = `translateX(0)`;
   currentIndex = 0;
 });
+
+// Gallery Carousel Logic
+const galleryTrack = document.getElementById("galleryTrack");
+const galleryItems = document.querySelectorAll(".gallery-item");
+let galleryIndex = 0;
+
+function updateGallery() {
+  const width = galleryItems[0].clientWidth;
+  galleryTrack.style.transform = `translateX(-${galleryIndex * width}px)`;
+}
+
+function moveGallery(step) {
+  galleryIndex += step;
+
+  if (galleryIndex >= galleryItems.length) {
+    galleryIndex = 0; // Loop back to start
+  } else if (galleryIndex < 0) {
+    galleryIndex = galleryItems.length - 1; // Loop to end
+  }
+
+  updateGallery();
+}
+
+// Auto-loop every 5 seconds
+let galleryInterval = setInterval(() => moveGallery(1), 5000);
+
+// Pause auto-loop when user interacts with buttons
+document.querySelectorAll(".gallery-prev, .gallery-next").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    clearInterval(galleryInterval);
+    galleryInterval = setInterval(() => moveGallery(1), 5000);
+  });
+});
+
+// Sync on resize
+window.addEventListener("resize", updateGallery);
