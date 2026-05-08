@@ -36,6 +36,77 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="/assets/style.css">
+
+    <!-- START Urima Guard Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1295105325404049');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" src="https://www.facebook.com/tr?id=1295105325404049&ev=PageView
+                &noscript=1" />
+    </noscript>
+    <!-- END Urima Guard Facebook Pixel Code -->
+
+    <!-- START purchase event tracking -->
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const orderId = params.get('order_id');
+            const price = parseFloat(params.get('price')) || 20000;
+            const quantity = parseInt(params.get('quantity')) || 1;
+
+            // Prevent duplicate firing using a unique key for this order
+            const trackingKey = `order_tracked_${orderId}`;
+            const hasTracked = sessionStorage.getItem(trackingKey);
+
+            // Only fire if there is a valid Order ID, Price, and it hasn't tracked yet
+            if (orderId && price > 0 && !hasTracked) {
+
+                // TikTok Purchase Tracking
+                if (typeof ttq !== 'undefined') {
+                    ttq.track('Purchase', {
+                        contents: [{
+                            content_id: 'UG-001',
+                            content_name: 'Urima Guard',
+                            quantity: quantity,
+                            price: price
+                        }],
+                        value: price,
+                        currency: 'NGN'
+                    });
+                }
+
+                // Meta (Facebook) Purchase Tracking
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'Purchase', {
+                        content_ids: ['UG-001'],
+                        content_name: 'Urima Guard',
+                        content_type: 'product',
+                        value: price,
+                        currency: 'NGN',
+                        num_items: quantity
+                    });
+                }
+
+                // Mark as tracked in this session
+                sessionStorage.setItem(trackingKey, 'true');
+                console.log(`Purchase event tracked for Order: ${orderId}`);
+            }
+        })();
+    </script>
+    <!-- END purchase event tracking -->
 </head>
 
 <body>

@@ -1,24 +1,55 @@
 // Assigns corresponding value to price based on Net quantity
 function checkForm() {
   const form = document.orderForm;
-  const orderQty = form.quantity;
+  const orderQty = form.quantity.value;
   const submitBtn = form.orderBtn;
+  let priceValue = 0;
 
-  // Set prices based on quantity
-  if (orderQty.value == 1) {
-    form.price.value = "₦20,000";
-  } else if (orderQty.value == 2) {
-    form.price.value = "₦35,000";
-  } else if (orderQty.value == 3) {
-    form.price.value = "₦45,000";
-  } else if (orderQty.value == 4) {
-    form.price.value = "₦60,000";
+  if (orderQty == "1") {
+    priceValue = 20000;
+  } else if (orderQty == "2") {
+    priceValue = 35000;
+  } else if (orderQty == "3") {
+    priceValue = 45000;
+  } else if (orderQty == "4") {
+    priceValue = 60000;
   } else {
     alert("Please select a quantity");
     return false;
   }
 
-  // Disable the button and change text to provide feedback
+  // Assign the formatted price to the hidden form field for the backend
+  form.price.value = "₦" + priceValue.toLocaleString();
+
+  // Meta Pixel Tracking (InitiateCheckout)
+  if (typeof fbq !== "undefined" && priceValue > 0) {
+    console.log("Meta Pixel installed and available");
+    fbq("track", "InitiateCheckout", {
+      content_name: "Urima Guard",
+      content_category: "Health",
+      content_ids: ["UG-001"],
+      value: priceValue,
+      currency: "NGN",
+    });
+  }
+
+  // TikTok Tracking (AddToCart)
+  if (typeof ttq !== "undefined" && priceValue > 0) {
+    ttq.track("AddToCart", {
+      contents: [
+        {
+          content_id: "UG-001",
+          content_name: "Urima Guard",
+          quantity: parseInt(orderQty),
+          price: priceValue,
+        },
+      ],
+      value: priceValue,
+      currency: "NGN",
+    });
+  }
+
+  // Disable the button to prevent multiple submissions
   submitBtn.disabled = true;
   submitBtn.innerText = "PROCESSING...";
   submitBtn.style.opacity = "0.7";
