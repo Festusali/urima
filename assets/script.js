@@ -6,7 +6,7 @@ function checkForm() {
     return true;
   }
   if (orderQty.value == 2) {
-    document.orderForm.price.value = "₦30,000";
+    document.orderForm.price.value = "₦35,000";
     return true;
   }
   if (orderQty.value == 3) {
