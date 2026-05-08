@@ -1,22 +1,30 @@
 // Assigns corresponding value to price based on Net quantity
 function checkForm() {
-  orderQty = document.orderForm.quantity;
+  const form = document.orderForm;
+  const orderQty = form.quantity;
+  const submitBtn = form.orderBtn;
+
+  // Set prices based on quantity
   if (orderQty.value == 1) {
-    document.orderForm.price.value = "₦20,000";
-    return true;
+    form.price.value = "₦20,000";
+  } else if (orderQty.value == 2) {
+    form.price.value = "₦35,000";
+  } else if (orderQty.value == 3) {
+    form.price.value = "₦45,000";
+  } else if (orderQty.value == 4) {
+    form.price.value = "₦60,000";
+  } else {
+    alert("Please select a quantity");
+    return false;
   }
-  if (orderQty.value == 2) {
-    document.orderForm.price.value = "₦35,000";
-    return true;
-  }
-  if (orderQty.value == 3) {
-    document.orderForm.price.value = "₦45,000";
-    return true;
-  }
-  if (orderQty.value == 4) {
-    document.orderForm.price.value = "₦60,000";
-    return true;
-  }
+
+  // Disable the button and change text to provide feedback
+  submitBtn.disabled = true;
+  submitBtn.innerText = "PROCESSING...";
+  submitBtn.style.opacity = "0.7";
+  submitBtn.style.cursor = "not-allowed";
+
+  return true;
 }
 
 // Carousel Auto-Loop Logic

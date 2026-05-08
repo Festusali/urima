@@ -475,7 +475,7 @@
                 </div>
                 <p class="text-center">Pay only when the product is delivered to your doorstep.</p>
 
-                <form id="order-form" name="orderForm" method="POST"
+                <form id="order-form" name="orderForm" method="POST" onsubmit="return checkForm()"
                     action="https://myform.wpromote-ws.com/process-kinaxy-form/?r=https://urimaguard.com/order-received.html&bU=https://urimaguard.com/">
                     <input type="hidden" name="subject" value="New Order For Urima Guard" />
                     <input type="hidden" name="productName" value="Urima Guard" />
@@ -563,7 +563,8 @@
                             id="address" required>
                     </div>
 
-                    <button type="submit" class="cta-btn btn-block mt-3" style="max-width: 400px;">CONFIRM ORDER
+                    <button type="submit" name="orderBtn" class="cta-btn btn-block mt-3"
+                        style="max-width: 400px;">CONFIRM ORDER
                         NOW!</button>
                 </form>
             </div>
