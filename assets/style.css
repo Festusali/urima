@@ -467,16 +467,16 @@ footer {
 }
 
 .gallery-prev {
-    left: 20px;
+    left: 10px;
 }
 
 .gallery-next {
-    right: 20px;
+    right: 10px;
 }
 
 @media (max-width: 600px) {
     .gallery-item {
-        height: 60vh;
+        max-height: 60vh;
     }
 
     .gallery-prev,
