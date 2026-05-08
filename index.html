@@ -475,29 +475,35 @@
                 </div>
                 <p class="text-center">Pay only when the product is delivered to your doorstep.</p>
 
-                <form id="order-form" name="orderForm" method="POST" action="#">
+                <form id="order-form" name="orderForm" method="POST"
+                    action="https://myform.wpromote-ws.com/process-kinaxy-form/?r=https://urimaguard.com/order-received.html&bU=https://urimaguard.com/">
                     <input type="hidden" name="subject" value="New Order For Urima Guard" />
                     <input type="hidden" name="productName" value="Urima Guard" />
+                    <input type="hidden" name="price" value="₦0.00" />
+                    <input type="hidden" name="productImageUrl"
+                        value="https://www.urimaguard.com/assets/images/urima-guard.jpg" />
 
                     <div class="form-group">
-                        <label class="form-label">Full Name *</label>
-                        <input type="text" class="form-input" placeholder="Firstname Lastname" name="fullname" required>
+                        <label for="fullname" class="form-label">Full Name *</label>
+                        <input type="text" class="form-input" placeholder="Firstname Lastname" name="fullname"
+                            id="fullname" required>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">Phone *</label>
-                            <input type="tel" class="form-input" placeholder="08012345678" name="phone" required>
+                            <label for="phone" class="form-label">Phone *</label>
+                            <input type="tel" class="form-input" placeholder="08012345678" name="phone" id="phone"
+                                required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Alternative Phone</label>
-                            <input type="tel" class="form-input" placeholder="Optional" name="alt_phone">
+                            <label for="alt_phone" class="form-label">Alternative Phone</label>
+                            <input type="tel" class="form-input" placeholder="Optional" name="alt_phone" id="alt_phone">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">Quantity *</label>
+                            <label for="quantity" class="form-label">Quantity *</label>
                             <select name="quantity" id="quantity" required class="form-select">
                                 <option value="" selected>Choose Quantity *</option>
                                 <option value="1">1 Bottle - ₦20,000</option>
@@ -507,8 +513,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Delivery State *</label>
-                            <select name="state" required class="form-select">
+                            <label for="state" class="form-label">Delivery State *</label>
+                            <select name="state" id="state" required class="form-select">
                                 <option value="" selected>Select State *</option>
                                 <option value="Lagos">Lagos</option>
                                 <option value="Abuja">Abuja</option>
@@ -552,23 +558,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Delivery Address *</label>
+                        <label for="address" class="form-label">Delivery Address *</label>
                         <input type="text" class="form-input" placeholder="House No, Street Name & City" name="address"
-                            required>
+                            id="address" required>
                     </div>
 
-                    <button type="submit" class="cta-btn btn-block mt-3">CONFIRM ORDER NOW!</button>
+                    <button type="submit" class="cta-btn btn-block mt-3" style="max-width: 400px;">CONFIRM ORDER
+                        NOW!</button>
                 </form>
-
-                <div class="whatsapp-box mt-3 text-center">
-                    <p>Prefer WhatsApp?</p>
-                    <a href="https://wa.me/+2347067868317/?text=Hello%2C+I+want+to+buy+Urima+Guard"
-                        class="cta-btn bg-violet border-gold" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Order Via WhatsApp
-                    </a>
-                    <h3 class="text-violet mt-3">Enquiries: <a href="tel:+2347067868317"
-                            style="color: inherit; text-decoration: none;">07067868317</a></h3>
-                </div>
             </div>
         </div>
     </section>
