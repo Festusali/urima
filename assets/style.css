@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 :root {
     --rose-red: #E31E24;
     --light-rose-red: #f0d4d5;
