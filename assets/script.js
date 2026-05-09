@@ -23,7 +23,7 @@ function checkForm() {
 
   // Meta Pixel Tracking (InitiateCheckout)
   if (typeof fbq !== "undefined" && priceValue > 0) {
-    console.log("Meta Pixel installed and available");
+    console.log("Meta Pixel installed. Firing InitiateCheckout event");
     fbq("track", "InitiateCheckout", {
       content_name: "Urima Guard",
       content_category: "Health",
@@ -35,6 +35,13 @@ function checkForm() {
 
   // TikTok Tracking (AddToCart)
   if (typeof ttq !== "undefined" && priceValue > 0) {
+    console.log("Meta Pixel installed. Firing AddToCart event");
+    // Set user email and phone number for use on order confirmation page
+    const email = form.email.value;
+    const phone = form.phone.value;
+    sessionStorage.setItem("user_email", email);
+    sessionStorage.setItem("user_phone", phone);
+
     ttq.track("AddToCart", {
       contents: [
         {

@@ -59,54 +59,21 @@
     </noscript>
     <!-- END Urima Guard Facebook Pixel Code -->
 
-    <!-- START purchase event tracking -->
+    <!-- START Urima Guard TikTok Pixel Code -->
     <script>
-        (function () {
-            const params = new URLSearchParams(window.location.search);
-            const orderId = params.get('order_id');
-            const price = parseFloat(params.get('price')) || 20000;
-            const quantity = parseInt(params.get('quantity')) || 1;
-
-            // Prevent duplicate firing using a unique key for this order
-            const trackingKey = `order_tracked_${orderId}`;
-            const hasTracked = sessionStorage.getItem(trackingKey);
-
-            // Only fire if there is a valid Order ID, Price, and it hasn't tracked yet
-            if (orderId && price > 0 && !hasTracked) {
-
-                // TikTok Purchase Tracking
-                if (typeof ttq !== 'undefined') {
-                    ttq.track('Purchase', {
-                        contents: [{
-                            content_id: 'UG-001',
-                            content_name: 'Urima Guard',
-                            quantity: quantity,
-                            price: price
-                        }],
-                        value: price,
-                        currency: 'NGN'
-                    });
-                }
-
-                // Meta (Facebook) Purchase Tracking
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', 'Purchase', {
-                        content_ids: ['UG-001'],
-                        content_name: 'Urima Guard',
-                        content_type: 'product',
-                        value: price,
-                        currency: 'NGN',
-                        num_items: quantity
-                    });
-                }
-
-                // Mark as tracked in this session
-                sessionStorage.setItem(trackingKey, 'true');
-                console.log(`Purchase event tracked for Order: ${orderId}`);
-            }
-        })();
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
+                for (
+                    var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e
+            }, ttq.load = function (e, n) {
+                var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script")
+                    ; n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+            };
+            ttq.load('D7VFEPBC77UEPF9K0CKG');
+            ttq.page();
+        }(window, document, 'ttq');
     </script>
-    <!-- END purchase event tracking -->
+    <!-- END Urima Guard TikTok Pixel Code -->
 </head>
 
 <body>
@@ -124,6 +91,87 @@
             </a>
         </div>
     </section>
+
+    <!-- START purchase event tracking -->
+    <script>
+        (function () {
+
+            window.addEventListener('load', function () {
+
+                setTimeout(function () {
+
+                    console.log("Check order validity");
+
+                    const params = new URLSearchParams(window.location.search);
+
+                    const orderId = params.get('order_id');
+                    const price = Number(params.get('price')) || 20000;
+                    const quantity = Number(params.get('quantity')) || 1;
+
+                    console.log("Order ID:", orderId);
+                    console.log("Price:", price);
+                    console.log("Quantity:", quantity);
+
+                    const trackingKey = `order_tracked_${orderId}`;
+                    const hasTracked = sessionStorage.getItem(trackingKey);
+
+                    if (!orderId || price <= 0 || hasTracked) return;
+
+                    console.log("Tracking Purchase Event");
+
+                    // =========================
+                    // META PIXEL (Facebook)
+                    // =========================
+                    if (typeof fbq === 'function') {
+                        console.log("Meta pixel detected → firing Purchase");
+
+                        fbq('track', 'Purchase', {
+                            value: price,
+                            currency: 'NGN',
+                            content_ids: ['UG-001'],
+                            content_name: 'Urima Guard',
+                            content_type: 'product',
+                            num_items: quantity
+                        });
+
+                    } else {
+                        console.log("Meta pixel not found → skipping");
+                    }
+
+                    // =========================
+                    // TIKTOK PIXEL
+                    // =========================
+                    if (typeof ttq !== 'undefined' && ttq) {
+                        const email = sessionStorage.getItem("user_email");
+                        const phone = sessionStorage.getItem("user_phone");
+                        console.log("TikTok pixel detected → firing Purchase");
+
+                        ttq.track('PlaceAnOrder', {
+                            contents: [{
+                                content_id: 'UG-001',
+                                content_name: 'Urima Guard',
+                                quantity: quantity,
+                                price: price
+                            }],
+                            value: price,
+                            currency: 'NGN',
+                            email: email || undefined,
+                            phone_number: phone || undefined
+                        });
+                    } else {
+                        console.log("TikTok pixel not found → skipping");
+                    }
+
+                    // Mark as tracked
+                    sessionStorage.setItem(trackingKey, 'true');
+                    console.log(`Purchase tracked for Order: ${orderId}`);
+
+                }, 1200);
+            });
+
+        })();
+    </script>
+    <!-- END purchase event tracking -->
 </body>
 
 </html>
