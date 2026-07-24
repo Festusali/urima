@@ -1,4 +1,4 @@
-// Assigns corresponding value to price based on Net quantity
+// Assigns corresponding value to price based on Urima quantity
 function checkForm() {
   const form = document.orderForm;
   const orderQty = form.quantity.value;
@@ -6,13 +6,13 @@ function checkForm() {
   let priceValue = 0;
 
   if (orderQty == "1") {
-    priceValue = 20000;
+    priceValue = 22500;
   } else if (orderQty == "2") {
-    priceValue = 35000;
+    priceValue = 40000;
   } else if (orderQty == "3") {
-    priceValue = 45000;
+    priceValue = 55000;
   } else if (orderQty == "4") {
-    priceValue = 60000;
+    priceValue = 68000;
   } else {
     alert("Please select a quantity");
     return false;
