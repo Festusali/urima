@@ -23,11 +23,19 @@ function checkForm() {
     return false;
   }
 
+  const quantityValue = parseInt(orderQty, 10);
+
   // Assign the formatted price to the hidden form field for the backend.
   form.price.value = "₦" + priceValue.toLocaleString();
 
+  // Save order data for the confirmation page.
+  sessionStorage.setItem("user_email", form.email.value);
+  sessionStorage.setItem("user_phone", form.phone.value);
+  sessionStorage.setItem("order_price", String(priceValue));
+  sessionStorage.setItem("order_quantity", String(quantityValue));
+
   // Meta Pixel Tracking (InitiateCheckout)
-  if (typeof fbq !== "undefined" && priceValue > 0) {
+  if (typeof fbq === "function" && priceValue > 0) {
     console.log("Meta Pixel installed. Firing InitiateCheckout event");
 
     fbq("track", "InitiateCheckout", {
@@ -36,6 +44,7 @@ function checkForm() {
       content_ids: ["UG-001"],
       value: priceValue,
       currency: "NGN",
+      num_items: quantityValue,
     });
   }
 
@@ -43,18 +52,12 @@ function checkForm() {
   if (typeof ttq !== "undefined" && priceValue > 0) {
     console.log("TikTok Pixel installed. Firing AddToCart event");
 
-    const email = form.email.value;
-    const phone = form.phone.value;
-
-    sessionStorage.setItem("user_email", email);
-    sessionStorage.setItem("user_phone", phone);
-
     ttq.track("AddToCart", {
       contents: [
         {
           content_id: "UG-001",
           content_name: "Urima Guard",
-          quantity: parseInt(orderQty, 10),
+          quantity: quantityValue,
           price: priceValue,
         },
       ],

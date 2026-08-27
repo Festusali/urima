@@ -96,7 +96,7 @@
     <script>
         (function () {
 
-            window.addEventListener('load', function () {
+            window.addEventListener("load", function () {
 
                 setTimeout(function () {
 
@@ -104,9 +104,17 @@
 
                     const params = new URLSearchParams(window.location.search);
 
-                    const orderId = params.get('order_id');
-                    const price = Number(params.get('price')) || 20000;
-                    const quantity = Number(params.get('quantity')) || 1;
+                    const orderId = params.get("order_id");
+
+                    // Prefer URL parameters, then sessionStorage, then fallback.
+                    const storedPrice = sessionStorage.getItem("order_price");
+                    const storedQuantity = sessionStorage.getItem("order_quantity");
+
+                    const priceParam = params.get("price");
+                    const quantityParam = params.get("quantity");
+
+                    const price = Number(priceParam || storedPrice) || 20000;
+                    const quantity = Number(quantityParam || storedQuantity) || 1;
 
                     console.log("Order ID:", orderId);
                     console.log("Price:", price);
@@ -115,23 +123,25 @@
                     const trackingKey = `order_tracked_${orderId}`;
                     const hasTracked = sessionStorage.getItem(trackingKey);
 
-                    if (!orderId || price <= 0 || hasTracked) return;
+                    if (!orderId || price <= 0 || hasTracked) {
+                        return;
+                    }
 
                     console.log("Tracking Purchase Event");
 
                     // =========================
                     // META PIXEL (Facebook)
                     // =========================
-                    if (typeof fbq === 'function') {
+                    if (typeof fbq === "function") {
                         console.log("Meta pixel detected → firing Purchase");
 
-                        fbq('track', 'Purchase', {
+                        fbq("track", "Purchase", {
                             value: price,
-                            currency: 'NGN',
-                            content_ids: ['UG-001'],
-                            content_name: 'Urima Guard',
-                            content_type: 'product',
-                            num_items: quantity
+                            currency: "NGN",
+                            content_ids: ["UG-001"],
+                            content_name: "Urima Guard",
+                            content_type: "product",
+                            num_items: quantity,
                         });
 
                     } else {
@@ -141,29 +151,34 @@
                     // =========================
                     // TIKTOK PIXEL
                     // =========================
-                    if (typeof ttq !== 'undefined' && ttq) {
+                    if (typeof ttq !== "undefined" && ttq) {
                         const email = sessionStorage.getItem("user_email");
                         const phone = sessionStorage.getItem("user_phone");
+
                         console.log("TikTok pixel detected → firing Purchase");
 
-                        ttq.track('PlaceAnOrder', {
-                            contents: [{
-                                content_id: 'UG-001',
-                                content_name: 'Urima Guard',
-                                quantity: quantity,
-                                price: price
-                            }],
+                        ttq.track("PlaceAnOrder", {
+                            contents: [
+                                {
+                                    content_id: "UG-001",
+                                    content_name: "Urima Guard",
+                                    quantity: quantity,
+                                    price: price,
+                                },
+                            ],
                             value: price,
-                            currency: 'NGN',
+                            currency: "NGN",
                             email: email || undefined,
-                            phone_number: phone || undefined
+                            phone_number: phone || undefined,
                         });
+
                     } else {
                         console.log("TikTok pixel not found → skipping");
                     }
 
-                    // Mark as tracked
-                    sessionStorage.setItem(trackingKey, 'true');
+                    // Mark as tracked.
+                    sessionStorage.setItem(trackingKey, "true");
+
                     console.log(`Purchase tracked for Order: ${orderId}`);
 
                 }, 1200);
