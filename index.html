@@ -515,11 +515,12 @@
                 <p class="text-center">Pay only when the product is delivered to your doorstep.</p>
 
                 <form id="order-form" name="orderForm" method="POST" onsubmit="return checkForm()"
-                    action="https://myform.kinaxy.com/process-kinaxy-form/?r=https://urimaguard.com/order-received.html&bU=https://urimaguard.com/">
+                    action="https://myform.kinaxy.com/process-order/urima-guard/">
+                    <input type="hidden" name="order_source" value="urima-guard" />
                     <input type="hidden" name="subject" value="New Order For Urima Guard" />
-                    <input type="hidden" name="productName" value="Urima Guard" />
+                    <input type="hidden" name="product_name" value="Urima Guard" />
                     <input type="hidden" name="price" value="₦0.00" />
-                    <input type="hidden" name="productImageUrl"
+                    <input type="hidden" name="product_image_url"
                         value="https://www.urimaguard.com/assets/images/urima-guard.jpg" />
 
                     <div class="form-row">

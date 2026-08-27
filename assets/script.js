@@ -1,29 +1,35 @@
-// Assigns corresponding value to price based on Urima quantity
+// Assign corresponding value to price based on Urima quantity
 function checkForm() {
   const form = document.orderForm;
+
+  if (!form) {
+    return false;
+  }
+
   const orderQty = form.quantity.value;
   const submitBtn = form.orderBtn;
   let priceValue = 0;
 
-  if (orderQty == "1") {
+  if (orderQty === "1") {
     priceValue = 22500;
-  } else if (orderQty == "2") {
+  } else if (orderQty === "2") {
     priceValue = 40000;
-  } else if (orderQty == "3") {
+  } else if (orderQty === "3") {
     priceValue = 55000;
-  } else if (orderQty == "4") {
+  } else if (orderQty === "4") {
     priceValue = 68000;
   } else {
     alert("Please select a quantity");
     return false;
   }
 
-  // Assign the formatted price to the hidden form field for the backend
+  // Assign the formatted price to the hidden form field for the backend.
   form.price.value = "₦" + priceValue.toLocaleString();
 
   // Meta Pixel Tracking (InitiateCheckout)
   if (typeof fbq !== "undefined" && priceValue > 0) {
     console.log("Meta Pixel installed. Firing InitiateCheckout event");
+
     fbq("track", "InitiateCheckout", {
       content_name: "Urima Guard",
       content_category: "Health",
@@ -35,10 +41,11 @@ function checkForm() {
 
   // TikTok Tracking (AddToCart)
   if (typeof ttq !== "undefined" && priceValue > 0) {
-    console.log("Meta Pixel installed. Firing AddToCart event");
-    // Set user email and phone number for use on order confirmation page
+    console.log("TikTok Pixel installed. Firing AddToCart event");
+
     const email = form.email.value;
     const phone = form.phone.value;
+
     sessionStorage.setItem("user_email", email);
     sessionStorage.setItem("user_phone", phone);
 
@@ -47,7 +54,7 @@ function checkForm() {
         {
           content_id: "UG-001",
           content_name: "Urima Guard",
-          quantity: parseInt(orderQty),
+          quantity: parseInt(orderQty, 10),
           price: priceValue,
         },
       ],
@@ -56,11 +63,13 @@ function checkForm() {
     });
   }
 
-  // Disable the button to prevent multiple submissions
-  submitBtn.disabled = true;
-  submitBtn.innerText = "PROCESSING...";
-  submitBtn.style.opacity = "0.7";
-  submitBtn.style.cursor = "not-allowed";
+  // Disable the button to prevent multiple submissions.
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerText = "PROCESSING...";
+    submitBtn.style.opacity = "0.7";
+    submitBtn.style.cursor = "not-allowed";
+  }
 
   return true;
 }
