@@ -34,14 +34,13 @@ function checkForm() {
   sessionStorage.setItem("order_price", String(priceValue));
   sessionStorage.setItem("order_quantity", String(quantityValue));
 
-  // Meta Pixel Tracking (InitiateCheckout)
+  // Meta Pixel Tracking (AdToCart)
   if (typeof fbq === "function" && priceValue > 0) {
-    console.log("Meta Pixel installed. Firing InitiateCheckout event");
+    console.log("Meta Pixel installed. Firing AdToCart event");
 
-    fbq("track", "InitiateCheckout", {
+    fbq("track", "AdToCart", {
       content_name: "Urima Guard",
-      content_category: "Health",
-      content_ids: ["UG-001"],
+      content_ids: ["UG-01"],
       value: priceValue,
       currency: "NGN",
       num_items: quantityValue,
@@ -55,7 +54,7 @@ function checkForm() {
     ttq.track("AddToCart", {
       contents: [
         {
-          content_id: "UG-001",
+          content_id: "UG-01",
           content_name: "Urima Guard",
           quantity: quantityValue,
           price: priceValue,
