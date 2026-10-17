@@ -426,6 +426,70 @@ footer {
     }
 }
 
+/* Pain point styles */
+.bedwetting-pain-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 30px auto 0;
+}
+
+.bedwetting-pain-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.bedwetting-pain-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.bedwetting-pain-card div {
+    padding: 18px;
+}
+
+.bedwetting-pain-card h3 {
+    margin: 0 0 8px;
+}
+
+.bedwetting-pain-card p {
+    margin: 0;
+}
+
+.gallery-container {
+    background: transparent;
+    overflow: visible;
+}
+
+.gallery-track {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+.gallery-item {
+    max-height: none;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.gallery-item img {
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+@media (min-width: 700px) {
+
+    .bedwetting-pain-grid,
+    .gallery-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 /* Testimonials Grid Layout */
 .testimonials-section {
     width: 100%;

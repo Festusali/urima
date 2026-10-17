@@ -106,17 +106,19 @@ window.addEventListener("resize", () => {
   currentIndex = 0;
 });
 
-// Gallery Carousel Logic
+// Gallery Carousel Logic (only used when the page includes carousel controls)
 const galleryTrack = document.getElementById("galleryTrack");
 const galleryItems = document.querySelectorAll(".gallery-item");
 let galleryIndex = 0;
 
 function updateGallery() {
+  if (!galleryTrack || !galleryItems.length) return;
   const width = galleryItems[0].clientWidth;
   galleryTrack.style.transform = `translateX(-${galleryIndex * width}px)`;
 }
 
 function moveGallery(step) {
+  if (!galleryTrack || !galleryItems.length) return;
   galleryIndex += step;
 
   if (galleryIndex >= galleryItems.length) {
@@ -128,16 +130,17 @@ function moveGallery(step) {
   updateGallery();
 }
 
-// Auto-loop every 5 seconds
-let galleryInterval = setInterval(() => moveGallery(1), 5000);
+// Auto-loop only when the gallery is configured as a carousel.
+let galleryInterval = galleryTrack ? setInterval(() => moveGallery(1), 5000) : null;
 
 // Pause auto-loop when user interacts with buttons
 document.querySelectorAll(".gallery-prev, .gallery-next").forEach((btn) => {
   btn.addEventListener("click", () => {
+    if (!galleryTrack) return;
     clearInterval(galleryInterval);
     galleryInterval = setInterval(() => moveGallery(1), 5000);
   });
 });
 
 // Sync on resize
-window.addEventListener("resize", updateGallery);
+if (galleryTrack) window.addEventListener("resize", updateGallery);
